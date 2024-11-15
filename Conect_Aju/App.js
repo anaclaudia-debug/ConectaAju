@@ -3,8 +3,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Introduction from './src/screens/introduction';
-import Login from './src/screens/login'
-import Register from './src/screens/register';
+import PersonalLogin from './src/screens/personal_login'
+import PersonalRegister from './src/screens/personal_register';
+import LoginONG from './src/screens/login_ong';
 
 
 const Stack = createStackNavigator();
@@ -14,8 +15,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Introduction">
         <Stack.Screen name="Introduction" component={Introduction} options={{ headerShown: false }} />
-        <Stack.Screen name="LoginPessoal" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+        <Stack.Screen name="LoginPessoal" component={PersonalLogin} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={PersonalRegister} options={{ headerShown: false }} />
+        <Stack.Screen name="LoginONG" component={LoginONG} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

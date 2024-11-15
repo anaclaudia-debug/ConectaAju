@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
-const Register = ({ navigation }) => {
+const PersonalRegister = ({ navigation }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,9 +18,9 @@ const Register = ({ navigation }) => {
       setErrorMessage('As senhas são diferentes.');
       return;
     }
-    
+
     setErrorMessage('');
-    
+
   };
 
   return (
@@ -64,4 +64,4 @@ const Register = ({ navigation }) => {
   );
 };
 
-export default Register;
+export default PersonalRegister;
