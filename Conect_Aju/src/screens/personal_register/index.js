@@ -49,7 +49,7 @@ const PersonalRegister = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirme a senha"
+        placeholder="Confirme sua senha"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry

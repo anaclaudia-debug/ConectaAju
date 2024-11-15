@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
   linkText: {
     color: '#00796b',
-    fontSize: 14,
+    fontSize: 16,
     marginTop: 10,
   },
 

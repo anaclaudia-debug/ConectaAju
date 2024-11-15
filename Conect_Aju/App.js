@@ -6,7 +6,7 @@ import Introduction from './src/screens/introduction';
 import PersonalLogin from './src/screens/personal_login'
 import PersonalRegister from './src/screens/personal_register';
 import LoginONG from './src/screens/login_ong';
-
+import RegisterONG from './src/screens/register_ong';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +18,7 @@ const App = () => {
         <Stack.Screen name="LoginPessoal" component={PersonalLogin} options={{ headerShown: false }} />
         <Stack.Screen name="Register" component={PersonalRegister} options={{ headerShown: false }} />
         <Stack.Screen name="LoginONG" component={LoginONG} options={{ headerShown: false }} />
+        <Stack.Screen name="CadastroONG" component={RegisterONG} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
