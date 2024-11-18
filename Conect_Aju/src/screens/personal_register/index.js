@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importando AsyncStorage
 import styles from './styles';
 
 const PersonalRegister = ({ navigation }) => {
@@ -9,7 +10,7 @@ const PersonalRegister = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!fullName || !email || !password || !confirmPassword) {
       setErrorMessage('Todos os campos são obrigatórios.');
       return;
@@ -19,8 +20,14 @@ const PersonalRegister = ({ navigation }) => {
       return;
     }
 
-    setErrorMessage('');
-
+    // Salvar os dados no AsyncStorage
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify({ email, password }));
+      setErrorMessage('');
+      navigation.navigate('LoginPessoal');  // Navegar para a tela de login após cadastro
+    } catch (error) {
+      setErrorMessage('Erro ao salvar dados.');
+    }
   };
 
   return (

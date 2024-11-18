@@ -5,22 +5,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#e0f7fa',
   },
+
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 20,
+    color: '#00796b',
   },
+
   button: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
+    marginTop: 10,
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#00796b',
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-  },
+
 });
 
 export default styles;

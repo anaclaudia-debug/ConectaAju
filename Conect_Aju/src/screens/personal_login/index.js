@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importando AsyncStorage
 import styles from './styles';
 
 const PersonalLogin = ({ navigation }) => {
@@ -7,42 +8,34 @@ const PersonalLogin = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const handleLogin = async () => {
+    try {
+      // Buscar dados do usuário no AsyncStorage
+      const user = await AsyncStorage.getItem('user');
+      const parsedUser = user ? JSON.parse(user) : null;
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      setErrorMessage('Preencha todos os campos.');
-      return;
+      if (!parsedUser || parsedUser.email !== email || parsedUser.password !== password) {
+        setErrorMessage('E-mail ou senha inválidos.');
+        return;
+      }
+
+      setErrorMessage('');
+      navigation.navigate('Main');  // Redirecionar para a tela principal
+    } catch (error) {
+      setErrorMessage('Erro ao fazer login.');
     }
-
-    if (!validateEmail(email)) {
-      setErrorMessage('Formato de e-mail inválido.');
-      return;
-    }
-
-    if (password.length < 8) {
-      setErrorMessage('A senha deve ter no mínimo 8 caracteres.');
-      return;
-    }
-
-    setErrorMessage(''); //limpa o erro s tudo estiver correto.
-
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Faça o login</Text>
+      <Text style={styles.title}>Faça seu Login</Text>
       {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
-        maxLength={254}
       />
       <TextInput
         style={styles.input}
@@ -50,14 +43,12 @@ const PersonalLogin = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        minLength={8}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-      <Text style={styles.texTask}>Ainda não é cadastrado?</Text>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerButtonText}>Clique aqui!</Text>
+        <Text style={styles.linkText}>Não tem uma conta? Cadastre-se</Text>
       </TouchableOpacity>
     </View>
   );
